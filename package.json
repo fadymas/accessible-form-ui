@@ -16,20 +16,27 @@
   "main": "js/master.js",
   "scripts": {
     "sass": "sass src/scss/style.scss src/style.css --watch --no-source-map",
-    "tailwind": "npx @tailwindcss/cli -i ./src/tailwind.css -o ./src/final.css --watch",
+    "tailwind": "npx @tailwindcss/cli -i src/tailwind.css -o src/final.css --watch",
     "postcss": "npx postcss src/final.css -o dist/output.min.css --watch",
-    "browserify": " browserify ./src/js/master.js -o ./dist/bundle.js --watch",
+    "browserify": "browserify src/js/master.js -o dist/bundle.js --watch",
     "watchify": "watchify src/js/master.js -o dist/bundle.js -v",
-    "dev": "concurrently  \"npm run sass\"  \"npm run tailwind\"  \"npm run postcss\" \"npm run browserify\" \"npm run watchify\" "
+    "dev": "concurrently \"npm run sass\" \"npm run tailwind\" \"npm run postcss\" \"npm run browserify\"",
+    "copy-html": "copyfiles index.html dist/",
+    "fix-html": "replace 'dist/output.min.css' 'output.min.css' dist/index.html && replace 'dist/bundle.js' 'bundle.js' dist/index.html",
+    "prepare-deploy": "npm run copy-html && npm run fix-html",
+    "deploy": "npm run prepare-deploy && gh-pages -d dist"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.11",
     "autoprefixer": "^10.4.21",
     "browserify": "^17.0.1",
     "concurrently": "^9.2.0",
+    "copyfiles": "^2.4.1",
     "cssnano": "^7.0.7",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
+    "replace": "^1.2.2",
     "sass": "^1.89.2",
     "watchify": "^4.0.0"
   }
