@@ -1,0 +1,36 @@
+{
+  "name": "accessible-form-ui",
+  "version": "1.0.0",
+  "description": "dynamic and accessible form UI built with HTML, CSS and JavaScript. Includes fields for name, email, password, a progress bar, and checklist. Designed with accessibility best practices.",
+  "homepage": "https://github.com/fadymas/accessible-form-ui#readme",
+  "bugs": {
+    "url": "https://github.com/fadymas/accessible-form-ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fadymas/accessible-form-ui.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "js/master.js",
+  "scripts": {
+    "sass": "sass src/scss/style.scss src/style.css --watch --no-source-map",
+    "tailwind": "npx @tailwindcss/cli -i ./src/tailwind.css -o ./src/final.css --watch",
+    "postcss": "npx postcss src/final.css -o docs/output.min.css --watch",
+    "browserify": " browserify ./src/js/master.js -o ./docs/bundle.js --watch",
+    "watchify": "watchify src/js/master.js -o docs/bundle.js -v",
+    "dev": "concurrently  \"npm run sass\"  \"npm run tailwind\"  \"npm run postcss\" \"npm run browserify\" \"npm run watchify\" "
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
+    "autoprefixer": "^10.4.21",
+    "browserify": "^17.0.1",
+    "concurrently": "^9.2.0",
+    "cssnano": "^7.0.7",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "sass": "^1.89.2",
+    "watchify": "^4.0.0"
+  }
+}
