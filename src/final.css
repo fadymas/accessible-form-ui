@@ -7,6 +7,7 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-green-700: oklch(52.7% 0.154 150.069);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -200,6 +201,9 @@
   .flex {
     display: flex;
   }
+  .table {
+    display: table;
+  }
   .h-\[3rem\] {
     height: 3rem;
   }
@@ -212,12 +216,22 @@
   .w-full {
     width: 100%;
   }
+  .border-collapse {
+    border-collapse: collapse;
+  }
+  .-translate-y-1 {
+    --tw-translate-y: calc(var(--spacing) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
   .-translate-y-1\/2 {
     --tw-translate-y: calc(calc(1/2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
+  }
+  .resize {
+    resize: both;
   }
   .flex-col {
     flex-direction: column;
@@ -246,6 +260,14 @@
   .rounded-\[1\.25rem\] {
     border-radius: 1.25rem;
   }
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
+  .border-2 {
+    border-style: var(--tw-border-style);
+    border-width: 2px;
+  }
   .border-3 {
     border-style: var(--tw-border-style);
     border-width: 3px;
@@ -260,11 +282,17 @@
   .bg-black {
     background-color: var(--color-black);
   }
+  .p-2 {
+    padding: calc(var(--spacing) * 2);
+  }
   .p-\[1\.5rem\] {
     padding: 1.5rem;
   }
   .py-\[1\.25rem\] {
     padding-block: 1.25rem;
+  }
+  .pr-11 {
+    padding-right: calc(var(--spacing) * 11);
   }
   .text-center {
     text-align: center;
@@ -279,6 +307,13 @@
   .text-white {
     color: var(--color-white);
   }
+  .underline {
+    text-decoration-line: underline;
+  }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
   .first\:max-h-full {
     &:first-child {
       max-height: 100%;
@@ -292,6 +327,11 @@
   .first\:max-w-full {
     &:first-child {
       max-width: 100%;
+    }
+  }
+  .user-valid\:border-green-700 {
+    &:user-valid {
+      border-color: var(--color-green-700);
     }
   }
 }
@@ -348,6 +388,11 @@
   syntax: "*";
   inherits: false;
 }
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
@@ -361,6 +406,7 @@
       --tw-skew-y: initial;
       --tw-border-style: solid;
       --tw-font-weight: initial;
+      --tw-outline-style: solid;
     }
   }
 }
