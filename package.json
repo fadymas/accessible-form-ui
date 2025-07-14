@@ -20,7 +20,7 @@
     "postcss": "npx postcss src/final.css -o dist/output.min.css --watch",
     "browserify": "browserify src/js/master.js -o dist/bundle.js --watch",
     "watchify": "watchify src/js/master.js -o dist/bundle.js -v",
-    "dev": "concurrently \"npm run sass\" \"npm run tailwind\" \"npm run postcss\" \"npm run browserify\"",
+    "dev": "concurrently \"npm run sass\" \"npm run tailwind\" \"npm run postcss\" \"npm run browserify\" \"npm run watchify\"",
     "copy-html": "copyfiles index.html dist/",
     "fix-html": "replace 'dist/output.min.css' 'output.min.css' dist/index.html && replace 'dist/bundle.js' 'bundle.js' dist/index.html",
     "prepare-deploy": "npm run copy-html && npm run fix-html",
