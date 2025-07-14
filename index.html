@@ -1,33 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="md:text-[1.2rem] lg:text-[1.3rem] 2xl:text-[1.4rem]">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Fady Mahrous Samir" />
+    <meta
+      name="description"
+      content="An accessible sign-up form with progress feedback, built using HTML, Tailwind CSS, and JavaScript for enhanced user experience."
+    />
+
     <link rel="stylesheet" href="output.min.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
+
+    <!-- ProgressBar.js library for animated circle progress -->
     <script src="https://cdn.jsdelivr.net/npm/progressbar.js@1.1.0/dist/progressbar.min.js"></script>
 
     <title>Accessible Sign-Up Form</title>
   </head>
-  <body class="h-screen py-[1.25rem] font-[Inter,sans-serif]">
+
+  <body class="h-screen py-[1.25rem] font-[Inter,sans-serif] content-center">
+    <!-- Main container that holds the form and progress section -->
     <main
-      class="p-[1.5rem] h-full flex flex-col items-start border-3 border-solid rounded-[1.25rem] border-black mx-[1.25rem] gap-[1.5rem]"
+      class="p-[1.5rem] flex flex-col items-center sm:flex-row-reverse border-3 border-solid rounded-[1.25rem] border-black mx-[1.25rem] gap-[1.5rem]"
     >
-      <section class="from-complete flex flex-col items-center">
+      <!-- Section for progress indicator -->
+      <section
+        class="from-complete flex flex-col items-center sm:w-md md:w-xl 2xl:w-2xl"
+      >
+        <!-- Container for the animated progress circle -->
         <div
           class="flex justify-center mb-2 first:max-w-full first:max-h-full first:w-1/3"
           id="container"
         ></div>
 
+        <!-- Label for progress -->
         <p class="text-center">Form Completeness</p>
       </section>
+
+      <!-- Section for the actual sign-up form -->
       <section class="form w-full">
-        <form action="" class="gap-[1.25rem] flex flex-col">
+        <form
+          action=""
+          method="post"
+          class="gap-[1.25rem] flex flex-col"
+          novalidate
+        >
+          <!-- Full Name input group -->
           <div class="form__group flex flex-col gap-1">
             <label class="font-bold" for="name">Full Name</label>
             <input
@@ -37,8 +62,17 @@
               name="name"
               id="name"
               autocomplete="name"
+              aria-describedby="name-desc"
             />
+            <!-- Error message container -->
+            <div
+              class="hidden text-red-500 text-[0.75rem]"
+              aria-live="assertive"
+              id="name-desc"
+            ></div>
           </div>
+
+          <!-- Email input group -->
           <div class="form__group flex flex-col gap-1">
             <label class="font-bold" for="email">Email</label>
             <input
@@ -48,8 +82,17 @@
               name="email"
               id="email"
               autocomplete="email"
+              aria-describedby="email-desc"
             />
+            <!-- Error message container -->
+            <div
+              class="hidden text-red-500 text-[0.75rem]"
+              aria-live="assertive"
+              id="email-desc"
+            ></div>
           </div>
+
+          <!-- Password input group -->
           <div class="form__group flex flex-col gap-1 relative">
             <label class="font-bold" for="password">Enter Password</label>
             <input
@@ -59,11 +102,31 @@
               name="password"
               id="password"
               autocomplete="current-password"
+              aria-describedby="password-desc"
+              minlength="8"
             />
-            <i
-              class="fa-solid fa-eye-slash fa-lg absolute right-5 top-13 -translate-y-1/2"
-            ></i>
+            <!-- Error message container -->
+            <div
+              class="hidden text-red-500 text-[0.75rem]"
+              aria-live="assertive"
+              id="password-desc"
+            ></div>
+
+            <!-- Toggle password visibility button -->
+            <button
+              type="button"
+              class="absolute right-5 top-13 -translate-y-1/2"
+            >
+              <i
+                class="fa-solid fa-eye-slash fa-lg"
+                role="button"
+                aria-label="Show password"
+                title="show password"
+              ></i>
+            </button>
           </div>
+
+          <!-- Confirm password input group -->
           <div class="form__group flex flex-col gap-1 relative">
             <label class="font-bold" for="confirm-password"
               >Confirm Password</label
@@ -75,25 +138,46 @@
               name="confirm-password"
               id="confirm-password"
               autocomplete="current-password"
+              aria-describedby="confirm-desc"
+              minlength="8"
             />
+            <!-- Error message container -->
+            <div
+              class="hidden text-red-500 text-[0.75rem]"
+              aria-live="assertive"
+              id="confirm-desc"
+            ></div>
 
-            <i
-              class="fa-solid fa-eye-slash fa-lg absolute right-5 top-13 -translate-y-1/2"
-            ></i>
+            <!-- Toggle confirm-password visibility button -->
+            <button
+              type="button"
+              class="absolute right-5 top-13 -translate-y-1/2"
+            >
+              <i
+                class="fa-solid fa-eye-slash fa-lg"
+                role="button"
+                aria-label="Show password"
+                title="show password"
+              ></i>
+            </button>
           </div>
+
           <button
             id="btn"
             class="h-[3rem] font-bold text-white rounded-[0.5rem] bg-black"
+            aria-label="sign up"
           >
             Sign UP
           </button>
         </form>
       </section>
     </main>
-    <script src="bundle.js"></script>
+
     <script
       src="https://kit.fontawesome.com/9447115d13.js"
       crossorigin="anonymous"
     ></script>
+
+    <script src="bundle.js"></script>
   </body>
 </html>
